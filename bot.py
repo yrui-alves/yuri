@@ -3,10 +3,11 @@ from discord.ext import commands
 from discord import app_commands
 import aiohttp
 import asyncio
+import os
 
 # ⚙️ CONFIGURAÇÕES
-API_URL = "http://SUA_API_AQUI"  # 🔴 Troque pela URL da sua API
-TOKEN = "SEU_TOKEN_DO_BOT"       # 🔴 Troque pelo token do seu bot
+API_URL = os.environ.get("API_URL", "http://SUA_API_AQUI")
+TOKEN = os.environ.get("TOKEN")
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -99,7 +100,7 @@ class ConfigModal(discord.ui.Modal, title="⚙️ Configurar Sala"):
         max_length=30
     )
     senha_sala = discord.ui.TextInput(
-        label="���� Senha da Sala",
+        label="🔒 Senha da Sala",
         placeholder="Padrão: 22",
         required=False,
         max_length=20,
